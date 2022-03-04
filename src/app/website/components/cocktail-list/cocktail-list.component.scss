@@ -1,0 +1,12 @@
+@import "~src/variables";
+
+.cocktail_list {
+  width: 80%;
+  padding: 10px;
+  margin: 20px auto;
+  border-radius: 5px;
+  background-color: $surface-color;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+}

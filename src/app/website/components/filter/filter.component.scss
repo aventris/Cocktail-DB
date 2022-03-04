@@ -1,0 +1,16 @@
+@import "~src/variables";
+.filter {
+  width: 80%;
+  height: 40px;
+  background-color: $surface-color;
+  border-radius: 5px;
+  margin: 20px auto;
+  color: $text-high-color;
+  &_toggle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &_content {
+  }
+}

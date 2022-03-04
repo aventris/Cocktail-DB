@@ -1,0 +1,18 @@
+@import "~src/variables";
+
+.filter_container {
+  background-color: $surface-color;
+  padding: 10px;
+}
+
+.filter_list {
+  border-top: 1px solid $text-disabled-color;
+  padding-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 180px));
+}
+
+.filter_title {
+  color: $text-high-color;
+  text-align: center;
+}

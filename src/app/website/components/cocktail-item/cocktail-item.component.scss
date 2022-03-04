@@ -1,0 +1,35 @@
+@import "~src/variables.scss";
+
+.cocktail_item {
+  width: 100%;
+  height: 250px;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  color: $text-high-color;
+  &:hover {
+    //color: $primary-color;
+    background-color: rgba($primary-color, 0.4);
+  }
+  &-img {
+    width: 100%;
+    //height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img {
+      border-radius: 50%;
+      //height: 100%;
+      width: 100%;
+    }
+  }
+  &-name {
+    font-size-adjust: 100%;
+    margin: 0;
+  }
+}

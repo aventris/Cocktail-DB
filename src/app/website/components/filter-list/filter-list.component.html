@@ -1,0 +1,9 @@
+<div class="filter_container">
+  <h3 class="filter_title">{{ title }}</h3>
+  <div class="filter_list">
+    <app-filter-item
+      [filter]="filter"
+      *ngFor="let filter of filters"
+    ></app-filter-item>
+  </div>
+</div>

@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+@import "src/variables";
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+body {
+  margin-top: $header-height;
+  height: calc(100vh - $header-height);
+  background-color: $background-color;
+}
