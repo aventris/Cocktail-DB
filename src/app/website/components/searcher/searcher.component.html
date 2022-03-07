@@ -1,1 +1,32 @@
-<p>searcher works!</p>
+<div class="searcher">
+  <form (submit)="onSubmit()">
+    <input
+      class="searcher_input"
+      [(ngModel)]="searchText"
+      type="text"
+      name="search"
+      id=""
+      placeholder="Enter name"
+    />
+  </form>
+
+  <div class="searcher_filter" (click)="toggleFilter()">
+    <p>{{ filterType }}</p>
+    <img src="assets/icons/purple_down_arrow_icon.svg" alt="" />
+    <div
+      [ngClass]="{
+        'filter-options': true,
+        'filter-options--hidden': !filterIsOpen
+      }"
+    >
+      <ul>
+        <li (click)="handleFilter('Cocktail'); $event.stopPropagation()">
+          Cocktail
+        </li>
+        <li (click)="handleFilter('Ingredient'); $event.stopPropagation()">
+          Ingredient
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -7,7 +7,7 @@ import { environment } from '../../environments/environment';
 import {
   Category,
   Glass,
-  Ingridient,
+  Ingredient,
   AlcoholicList,
 } from '../models/list.model';
 const API = environment.API;
@@ -26,8 +26,8 @@ export class CategoryService {
     return this.http.get<Glass>(`${API}/list.php?g=list`);
   }
 
-  getIngridients() {
-    return this.http.get<Ingridient>(`${API}/list.php?i=list`);
+  getIngredients() {
+    return this.http.get<Ingredient>(`${API}/list.php?i=list`);
   }
 
   getAlcoholic() {

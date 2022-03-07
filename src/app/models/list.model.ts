@@ -4,7 +4,7 @@ export interface Category {
 export interface Glass {
   drinks: [{ strGlass: string }];
 }
-export interface Ingridient {
+export interface Ingredient {
   drinks: [{ strIngredient1: string }];
 }
 export interface AlcoholicList {

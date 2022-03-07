@@ -11,15 +11,15 @@
       <div class="details_image">
         <img [src]="cocktail?.strDrinkThumb" alt="" />
       </div>
-      <div class="ingridients">
-        <h4 class="hightlight">Ingridients</h4>
-        <ol class="ingridients_list">
-          <ng-container *ngFor="let ingridient of ingridients">
-            <li *ngIf="cocktail[getIngridients(ingridient)]">
+      <div class="ingredients">
+        <h4 class="hightlight">Ingredients</h4>
+        <ol class="ingredients_list">
+          <ng-container *ngFor="let ingredient of ingredients">
+            <li *ngIf="cocktail[getIngredients(ingredient)]">
               {{
-                cocktail[getIngridients(ingridient)] +
+                cocktail[getIngredients(ingredient)] +
                   ". " +
-                  cocktail[getMeasures(ingridient)]
+                  cocktail[getMeasures(ingredient)]
               }}
             </li>
           </ng-container>

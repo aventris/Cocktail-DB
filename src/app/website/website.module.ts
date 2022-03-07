@@ -15,6 +15,7 @@ import { FilterItemComponent } from './components/filter-item/filter-item.compon
 import { DetailsComponent } from './components/details/details.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,11 +30,8 @@ import { LoadingComponent } from './components/loading/loading.component';
     FilterListComponent,
     FilterItemComponent,
     DetailsComponent,
-    LoadingComponent
+    LoadingComponent,
   ],
-  imports: [
-    CommonModule,
-    WebsiteRoutingModule
-  ]
+  imports: [CommonModule, WebsiteRoutingModule, FormsModule],
 })
-export class WebsiteModule { }
+export class WebsiteModule {}

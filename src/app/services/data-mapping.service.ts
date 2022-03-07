@@ -6,7 +6,7 @@ import { Injectable } from '@angular/core';
 export class DataMappingService {
   constructor() {}
 
-  mapIngridients(
+  mapIngredients(
     type: string
   ):
     | 'strIngredient1'

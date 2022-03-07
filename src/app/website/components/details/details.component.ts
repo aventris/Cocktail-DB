@@ -19,7 +19,7 @@ export class DetailsComponent implements OnInit {
   cocktail: Cocktail | null = null;
 
   instructions: 'EN' | 'ES' | 'DE' | 'FR' | 'IT' = 'EN';
-  ingridients = [
+  ingredients = [
     '1',
     '2',
     '3',
@@ -51,8 +51,8 @@ export class DetailsComponent implements OnInit {
   getInstructions(type: string) {
     return this.dataMappingService.mapInstructions(type);
   }
-  getIngridients(type: string) {
-    return this.dataMappingService.mapIngridients(type);
+  getIngredients(type: string) {
+    return this.dataMappingService.mapIngredients(type);
   }
   getMeasures(type: string) {
     return this.dataMappingService.mapMeasures(type);

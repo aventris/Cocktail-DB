@@ -4,7 +4,7 @@ import { CategoryService } from '../../../services/category.service';
 import {
   Category,
   Glass,
-  Ingridient,
+  Ingredient,
   Alcoholic,
 } from '../../../models/list.model';
 
@@ -37,7 +37,7 @@ export class FilterListComponent implements OnInit {
         });
         break;
       case 'i':
-        this.categoryService.getIngridients().subscribe((data) => {
+        this.categoryService.getIngredients().subscribe((data) => {
           this.filters = data.drinks;
         });
         break;
