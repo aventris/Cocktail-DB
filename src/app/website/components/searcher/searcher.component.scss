@@ -2,15 +2,25 @@
 $filter-width: 120px;
 
 .searcher {
-  display: flex;
-  height: 40px;
+  &_title {
+    text-align: center;
+    color: $primary-color;
+    margin: 10px 0;
+  }
+
+  &_content {
+    display: flex;
+    height: 40px;
+    padding: 5px 10px;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   width: 80%;
   max-width: 600px;
   margin: 10px auto;
   padding: 5px 10px;
   border-radius: 5px;
-  justify-content: space-between;
-  align-items: center;
   background-color: $surface-color;
   form {
     width: 100%;

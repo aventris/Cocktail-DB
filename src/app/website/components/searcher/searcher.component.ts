@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { CocktailService } from '../../../services/cocktail.service';
 
@@ -11,7 +12,11 @@ export class SearcherComponent implements OnInit {
   filterIsOpen = false;
   searchText = '';
   filterType = 'Cocktail';
-  constructor(private cocktailService: CocktailService) {}
+  constructor(
+    private cocktailService: CocktailService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {}
 
@@ -26,6 +31,13 @@ export class SearcherComponent implements OnInit {
 
   onSubmit() {
     const filter = this.filterType === 'Cocktail' ? 's' : 'i';
+    this.router.navigate([], {
+      queryParams: {
+        ...(filter === 's'
+          ? { search_c: this.searchText }
+          : { search_i: this.searchText }),
+      },
+    });
     this.cocktailService.getByName(filter, this.searchText);
   }
 }

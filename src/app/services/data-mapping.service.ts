@@ -115,4 +115,16 @@ export class DataMappingService {
       ? 'strInstructionsFR'
       : 'strInstructionsIT';
   }
+
+  MapFilter(type: string): string {
+    return type === 'search_i'
+      ? 'filter.php?i'
+      : type === 'alcoholic'
+      ? 'filter.php?a'
+      : type === 'category'
+      ? 'filter.php?c'
+      : type === 'ingredient'
+      ? 'filter.php?i'
+      : 'filter.php?g'; //glass
+  }
 }

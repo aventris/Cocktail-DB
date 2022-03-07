@@ -1,13 +1,31 @@
 <div class="filter">
-  <div class="filter_toggle">
+  <div class="filter_toggle" (click)="toggleTag()">
     <p>Filter:</p>
     <p>ASDFSADFSADF</p>
   </div>
-  <div class="filter_content">
-    <app-filter-list [type]="'a'" title="Alcoholic"></app-filter-list>
-    <app-filter-list [type]="'c'" title="Category"></app-filter-list>
-    <app-filter-list [type]="'i'" title="Ingredient"></app-filter-list>
-    <app-filter-list [type]="'g'" title="Glass"></app-filter-list>
+  <div
+    [ngClass]="{ filter_content: true, 'filter_content--hidden': !menuIsOpen }"
+  >
+    <app-filter-list
+      (handleTagClick)="handleAlcoholicTag($event)"
+      type="a"
+      title="Alcoholic"
+    ></app-filter-list>
+    <app-filter-list
+      (handleTagClick)="handleCategoryTag($event)"
+      [type]="'c'"
+      title="Category"
+    ></app-filter-list>
+    <app-filter-list
+      (handleTagClick)="handleIngredientTag($event)"
+      [type]="'i'"
+      title="Ingredient"
+    ></app-filter-list>
+    <app-filter-list
+      (handleTagClick)="handleGlassTag($event)"
+      [type]="'g'"
+      title="Glass"
+    ></app-filter-list>
     <p>You can select only one type</p>
   </div>
 </div>

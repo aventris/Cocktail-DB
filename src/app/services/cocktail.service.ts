@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, map, pipe, take } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 import { environment } from '../../environments/environment';
 import { AlcoholicList } from '../models/list.model';
-import { map, tap } from 'rxjs';
 
 import { CocktailResponse } from '../models/cocktail.model';
+import { DataMappingService } from './data-mapping.service';
 
+import { Router } from '@angular/router';
 const API = environment.API;
 
 @Injectable({
@@ -20,13 +22,35 @@ export class CocktailService {
   $cocktailList = this.cocktailList.asObservable();
   $loading = this.loading.asObservable();
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private dataMappingService: DataMappingService,
+    private router: Router
+  ) {}
 
   getFilterList(type: 'c' | 'g' | 'i' | 'a') {
     return this.http.get<[]>(`${API}/list.php?${type}=list`);
   }
 
   getCocktails() {
+    this.route.queryParams.pipe(take(1)).subscribe((params) => {
+      let data: string | null = null;
+      let filter: string | null = null;
+      if (params['search_c']) {
+        data = params['search_c'];
+        filter = 's';
+      } else if (params['search_i']) {
+        data = params['search_i'];
+        filter = 'i';
+      }
+      if (data && filter) {
+        this.getByName(filter, data);
+      } else this.getAlcoholic();
+    });
+  }
+
+  getAlcoholic() {
     this.http
       .get<AlcoholicList>(`${API}/filter.php?a=Alcoholic`)
       .subscribe((data) => {
@@ -46,9 +70,34 @@ export class CocktailService {
     this.http
       .get<CocktailResponse>(`${API}/${queryStr}?${filter}=${data}`)
       .subscribe((data) => {
-        let aux = data.drinks;
-        this.cocktailList.next(aux);
-        this.loading.next(false);
+        if (data) {
+          let aux = data.drinks;
+          this.cocktailList.next(aux);
+          this.loading.next(false);
+        }
       });
   }
+
+  getByTag(type: string, tag: string) {
+    let urlFilter = this.dataMappingService.MapFilter(type);
+    let url = `${API}/${urlFilter}=${encodeURIComponent(tag)}`;
+    this.http.get<any>(url).subscribe((data) => {
+      if (data) {
+        this.cocktailList.next(data.drinks);
+        this.router.navigate([], {
+          queryParams: {
+            search_c: null,
+            search_i: null,
+            filter: type,
+            tag: tag,
+          },
+          queryParamsHandling: 'merge',
+        });
+      }
+    });
+  }
+
+  // TODO
+
+  // Put tags on cocktail details. Make an menu and queryparams handler to remove them when something happens
 }

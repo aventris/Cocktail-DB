@@ -1,6 +1,8 @@
 @import "~src/variables";
 .filter {
-  width: 80%;
+  z-index: 1;
+  position: relative;
+  max-width: 600px;
   height: 40px;
   background-color: $surface-color;
   border-radius: 5px;
@@ -12,5 +14,15 @@
     align-items: center;
   }
   &_content {
+    position: absolute;
+    top: 35px;
+    width: 600px;
+    left: 0;
+    transform: scaleY(1);
+    transition: all ease 0.5s;
+    transform-origin: top;
+    &--hidden {
+      transform: scaleY(0);
+    }
   }
 }

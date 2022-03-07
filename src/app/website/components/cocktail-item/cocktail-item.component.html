@@ -2,6 +2,7 @@
   class="cocktail_item"
   routerLink="/home"
   [queryParams]="{ cocktail: cocktail.idDrink }"
+  queryParamsHandling="merge"
 >
   <div class="cocktail_item-img">
     <img [src]="cocktail.strDrinkThumb" alt="" />

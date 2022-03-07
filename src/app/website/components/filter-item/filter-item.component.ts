@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-filter-item',
@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class FilterItemComponent implements OnInit {
   @Input() filter: any = null;
+  @Output() handleClick = new EventEmitter();
+
   string = '';
   constructor() {}
   ngOnInit(): void {
@@ -15,5 +17,9 @@ export class FilterItemComponent implements OnInit {
     else if (this.filter.strIngredient1)
       this.string = this.filter.strIngredient1;
     else if (this.filter.strAlcoholic) this.string = this.filter.strAlcoholic;
+  }
+
+  onClick() {
+    this.handleClick.emit({ tag: this.string });
   }
 }

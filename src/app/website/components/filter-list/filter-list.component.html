@@ -3,6 +3,7 @@
   <div class="filter_list">
     <app-filter-item
       [filter]="filter"
+      (handleClick)="onClick($event)"
       *ngFor="let filter of filters"
     ></app-filter-item>
   </div>

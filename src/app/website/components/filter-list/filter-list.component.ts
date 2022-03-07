@@ -1,12 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { CategoryService } from '../../../services/category.service';
-import {
-  Category,
-  Glass,
-  Ingredient,
-  Alcoholic,
-} from '../../../models/list.model';
 
 @Component({
   selector: 'app-filter-list',
@@ -17,6 +11,7 @@ export class FilterListComponent implements OnInit {
   filters: any[] = [];
   @Input() type!: 'c' | 'g' | 'i' | 'a';
   @Input() title: string = '';
+  @Output() handleTagClick = new EventEmitter();
 
   constructor(private categoryService: CategoryService) {}
 
@@ -47,5 +42,9 @@ export class FilterListComponent implements OnInit {
         });
         break;
     }
+  }
+
+  onClick(event: any) {
+    this.handleTagClick.emit(event);
   }
 }
