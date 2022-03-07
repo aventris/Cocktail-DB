@@ -1,0 +1,50 @@
+<div class="details_container">
+  <div class="details" *ngIf="cocktail">
+    <img
+      (click)="onClose()"
+      class="details_close-icon"
+      src="assets/icons/close_icon_purple.svg"
+      alt=""
+    />
+    <h3 class="details_title">{{ cocktail?.strDrink }}</h3>
+    <div class="details_up">
+      <div class="details_image">
+        <img [src]="cocktail?.strDrinkThumb" alt="" />
+      </div>
+      <div class="ingridients">
+        <h4 class="hightlight">Ingridients</h4>
+        <ol class="ingridients_list">
+          <ng-container *ngFor="let ingridient of ingridients">
+            <li *ngIf="cocktail[getIngridients(ingridient)]">
+              {{
+                cocktail[getIngridients(ingridient)] +
+                  ". " +
+                  cocktail[getMeasures(ingridient)]
+              }}
+            </li>
+          </ng-container>
+        </ol>
+      </div>
+    </div>
+    <div class="instructions">
+      <h4 class="hightlight">Instructions</h4>
+
+      <ul class="instructions_tab">
+        <ng-container *ngFor="let language of ['EN', 'ES', 'DE', 'FR', 'IT']">
+          <li
+            *ngIf="cocktail[getInstructions(language)]"
+            (click)="handleTabChange(language)"
+            [class.active]="instructions === language"
+          >
+            {{ language }}
+          </li>
+        </ng-container>
+      </ul>
+      <div class="instructions_text">
+        <p>
+          {{ cocktail[getInstructions(instructions)] }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

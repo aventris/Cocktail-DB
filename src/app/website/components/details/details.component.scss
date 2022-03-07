@@ -1,0 +1,104 @@
+@import "~src/variables";
+
+.details_container {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: white, $alpha: 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.details {
+  position: relative;
+  width: 500px;
+  background-color: $surface-color;
+  color: white;
+  border-radius: 5px;
+  padding: 20px;
+  box-shadow: 0 0 5px $background-color;
+  &_close-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    &:hover {
+      filter: drop-shadow(0px 0px 5px rgba($primary-color, 0.8));
+    }
+  }
+  &_title {
+    text-align: center;
+    color: $primary-color;
+  }
+  &_up {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  &_image {
+    width: 200px;
+    height: 200px;
+    img {
+      width: 100%;
+    }
+  }
+}
+
+.ingridients {
+  padding: 0 20px;
+
+  &_list {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    height: 150px;
+    overflow-y: auto;
+    @include scrollbar();
+    border-top: 1px solid $primary-color;
+    border-bottom: 1px solid $primary-color;
+  }
+}
+
+.instructions {
+  margin: 10px 0;
+  &_text {
+    height: 150px;
+    width: 100%;
+    line-break: auto;
+    border: 1px solid $primary-color;
+    padding: 10px;
+    overflow-y: auto;
+    @include scrollbar();
+  }
+  &_tab {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 20px auto 0 auto;
+    li {
+      flex: 1;
+      text-align: center;
+      padding: 3px 10px;
+      cursor: pointer;
+      &.active {
+        background-color: $primary-color;
+      }
+      &:hover {
+        background-color: rgba($primary-color, 0.7);
+      }
+    }
+  }
+}
+
+.hightlight {
+  color: $primary-color;
+  margin: 0;
+}

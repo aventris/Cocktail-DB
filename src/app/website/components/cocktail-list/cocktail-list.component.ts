@@ -15,7 +15,6 @@ export class CocktailListComponent implements OnInit {
 
   ngOnInit(): void {
     this.cocktailService.getCocktails().subscribe((data) => {
-      console.log(data);
       this.cocktails = data.drinks;
       this.test = data.drinks;
     });

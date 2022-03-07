@@ -34,3 +34,14 @@ $text-disabled-variant: #00000061;
 /******************************************/
 
 $header-height: 40px;
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border-radius: 2px;
+  }
+}

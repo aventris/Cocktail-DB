@@ -9,11 +9,7 @@ import { Alcoholic } from '../../../models/list.model';
 export class CocktailItemComponent implements OnInit {
   @Input() cocktail!: Alcoholic;
 
-  constructor() {
-    console.log(this.cocktail);
-  }
+  constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.cocktail);
-  }
+  ngOnInit(): void {}
 }

@@ -25,7 +25,6 @@ export class FilterListComponent implements OnInit {
   }
 
   getFilterList() {
-    console.log(this.type);
     switch (this.type) {
       case 'c':
         this.categoryService.getCategories().subscribe((data) => {

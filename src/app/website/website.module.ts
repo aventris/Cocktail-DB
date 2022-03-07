@@ -12,6 +12,8 @@ import { SearcherComponent } from './components/searcher/searcher.component';
 import { FilterComponent } from './components/filter/filter.component';
 import { FilterListComponent } from './components/filter-list/filter-list.component';
 import { FilterItemComponent } from './components/filter-item/filter-item.component';
+import { DetailsComponent } from './components/details/details.component';
+import { LoadingComponent } from './components/loading/loading.component';
 
 
 @NgModule({
@@ -25,7 +27,9 @@ import { FilterItemComponent } from './components/filter-item/filter-item.compon
     SearcherComponent,
     FilterComponent,
     FilterListComponent,
-    FilterItemComponent
+    FilterItemComponent,
+    DetailsComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

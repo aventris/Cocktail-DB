@@ -15,6 +15,5 @@ export class FilterItemComponent implements OnInit {
     else if (this.filter.strIngredient1)
       this.string = this.filter.strIngredient1;
     else if (this.filter.strAlcoholic) this.string = this.filter.strAlcoholic;
-    console.log(this.string);
   }
 }
