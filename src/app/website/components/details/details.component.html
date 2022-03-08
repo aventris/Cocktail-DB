@@ -24,6 +24,27 @@
             </li>
           </ng-container>
         </ol>
+        <button (click)="toggleIDeatils()">Details</button>
+      </div>
+    </div>
+    <div class="details_tags">
+      <div>
+        <p class="hightlight">Glass:</p>
+        <p (click)="handleTagFilter('glass', cocktail.strGlass)">
+          {{ cocktail.strGlass }}
+        </p>
+      </div>
+      <div>
+        <p class="hightlight">Aolcohol:</p>
+        <p (click)="handleTagFilter('alcoholic', cocktail.strAlcoholic)">
+          {{ cocktail.strAlcoholic }}
+        </p>
+      </div>
+      <div>
+        <p class="hightlight">Category:</p>
+        <p (click)="handleTagFilter('category', cocktail.strCategory)">
+          {{ cocktail.strCategory }}
+        </p>
       </div>
     </div>
     <div class="instructions">
@@ -48,3 +69,10 @@
     </div>
   </div>
 </div>
+
+<app-ingredients
+  *ngIf="cocktail && iDetails"
+  [ingredients]="ingridientList"
+  [measures]="measureList"
+  (onClose)="toggleIDeatils()"
+></app-ingredients>

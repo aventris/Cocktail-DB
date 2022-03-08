@@ -1,6 +1,7 @@
 @import "~src/variables";
 
 .details_container {
+  z-index: 2;
   position: fixed;
   top: $header-height;
   left: 0;
@@ -52,7 +53,6 @@
 
 .ingredients {
   padding: 0 20px;
-
   &_list {
     padding-top: 5px;
     padding-bottom: 5px;
@@ -62,12 +62,27 @@
     border-top: 1px solid $primary-color;
     border-bottom: 1px solid $primary-color;
   }
+  button {
+    display: block;
+    margin: 0 auto;
+    padding: 4px 10px;
+    border-radius: 5px;
+    background-color: $primary-color;
+    color: $text-high-color;
+    border: 1px solid transparent;
+    cursor: pointer;
+    &:hover {
+      background-color: $surface-color;
+      color: $primary-color;
+      border: 1px solid $primary-color;
+    }
+  }
 }
 
 .instructions {
   margin: 10px 0;
   &_text {
-    height: 150px;
+    height: 120px;
     width: 100%;
     line-break: auto;
     border: 1px solid $primary-color;
@@ -101,4 +116,34 @@
 .hightlight {
   color: $primary-color;
   margin: 0;
+}
+.details_tags {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  div {
+    margin: 5px 0;
+    /*   width: fit-content;
+    display: flex;
+    align-items: center; */
+    p:first-child {
+      margin-right: 10px;
+    }
+    p:last-child {
+      width: fit-content;
+      color: $text-medium-color;
+      border: 1px solid $text-medium-color;
+      padding: 3px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      &:hover {
+        color: $primary-color;
+        border: 1px solid $primary-color;
+      }
+    }
+  }
+  p {
+    margin: 0;
+  }
 }

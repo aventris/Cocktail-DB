@@ -1,12 +1,20 @@
 @import "~src/variables";
 
-.cocktail_list {
+.cocktails {
   max-width: 600px;
-  padding: 10px;
   margin: 20px auto;
-  border-radius: 5px;
+  padding: 20px;
   background-color: $surface-color;
+  border-radius: 5px;
 
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  &_list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 10px;
+  }
+  &_title {
+    color: $primary-color;
+    text-align: center;
+  }
 }

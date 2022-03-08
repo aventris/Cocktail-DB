@@ -54,7 +54,11 @@ export class CocktailService {
     this.http
       .get<AlcoholicList>(`${API}/filter.php?a=Alcoholic`)
       .subscribe((data) => {
-        this.cocktailList.next(data.drinks);
+        this.cocktailList.next({
+          ...data,
+          title: 'Alcoholic',
+          subtitle: 'Category',
+        });
       });
   }
 
@@ -64,30 +68,41 @@ export class CocktailService {
       .pipe(map((data) => data.drinks[0]));
   }
 
-  getByName(filter: string, data: string) {
+  getByName(filter: string, search: string) {
     let queryStr = 'i' === filter ? 'filter.php' : 'search.php';
     this.loading.next(true);
     this.http
-      .get<CocktailResponse>(`${API}/${queryStr}?${filter}=${data}`)
+      .get<CocktailResponse>(`${API}/${queryStr}?${filter}=${search}`)
       .subscribe((data) => {
         if (data) {
-          let aux = data.drinks;
-          this.cocktailList.next(aux);
+          this.cocktailList.next({
+            ...data,
+            title: search,
+            subtitle: `Search ${
+              queryStr === 'i' ? 'by ingredient' : 'by name'
+            }`,
+          });
           this.loading.next(false);
         }
       });
   }
 
   getByTag(type: string, tag: string) {
+    console.log('Service: ', type, tag);
     let urlFilter = this.dataMappingService.MapFilter(type);
     let url = `${API}/${urlFilter}=${encodeURIComponent(tag)}`;
     this.http.get<any>(url).subscribe((data) => {
       if (data) {
-        this.cocktailList.next(data.drinks);
+        this.cocktailList.next({
+          ...data,
+          title: decodeURI(tag),
+          subtitle: type,
+        });
         this.router.navigate([], {
           queryParams: {
             search_c: null,
             search_i: null,
+            cocktail: null,
             filter: type,
             tag: tag,
           },

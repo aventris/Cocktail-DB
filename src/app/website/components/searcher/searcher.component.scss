@@ -2,6 +2,12 @@
 $filter-width: 120px;
 
 .searcher {
+  width: 80%;
+  max-width: 600px;
+  margin: 10px auto;
+  padding: 5px 10px;
+  border-radius: 5px;
+  background-color: $surface-color;
   &_title {
     text-align: center;
     color: $primary-color;
@@ -16,12 +22,6 @@ $filter-width: 120px;
     align-items: center;
   }
 
-  width: 80%;
-  max-width: 600px;
-  margin: 10px auto;
-  padding: 5px 10px;
-  border-radius: 5px;
-  background-color: $surface-color;
   form {
     width: 100%;
     height: 100%;
@@ -45,7 +45,7 @@ $filter-width: 120px;
     justify-content: space-between;
     align-items: center;
     color: $text-high-color;
-
+    cursor: pointer;
     img {
       width: 25px;
       height: 25px;

@@ -1,6 +1,11 @@
-<div class="cocktail_list">
-  <app-cocktail-item
-    [cocktail]="cocktail"
-    *ngFor="let cocktail of cocktails"
-  ></app-cocktail-item>
+<div class="cocktails">
+  <h2 class="cocktails_title">
+    {{ (subtitle | sentence) + ": " + (title | sentence) }}
+  </h2>
+  <div class="cocktails_list">
+    <app-cocktail-item
+      [cocktail]="cocktail"
+      *ngFor="let cocktail of cocktails"
+    ></app-cocktail-item>
+  </div>
 </div>

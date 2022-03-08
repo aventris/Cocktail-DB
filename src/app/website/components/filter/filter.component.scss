@@ -1,28 +1,39 @@
 @import "~src/variables";
+
+$height: 40px;
 .filter {
   z-index: 1;
   position: relative;
   max-width: 600px;
-  height: 40px;
+  height: $height;
   background-color: $surface-color;
   border-radius: 5px;
   margin: 20px auto;
-  color: $text-high-color;
+  color: $primary-color;
   &_toggle {
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    &-title {
+      margin: 0;
+      line-height: $height;
+    }
   }
   &_content {
     position: absolute;
-    top: 35px;
+    top: $height;
     width: 600px;
+    height: 500px;
     left: 0;
     transform: scaleY(1);
     transition: all ease 0.5s;
     transform-origin: top;
+    overflow-y: auto;
     &--hidden {
       transform: scaleY(0);
     }
+    @include box-shadow;
+    @include scrollbar;
   }
 }

@@ -1,0 +1,59 @@
+@import "~src/variables";
+
+.modal {
+  z-index: 2;
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba($color: white, $alpha: 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.idetails {
+  position: relative;
+  width: 300px;
+  height: 300px;
+  padding: 20px;
+  background-color: $surface-color;
+  color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px $background-color;
+  &_close-icon {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    &:hover {
+      filter: drop-shadow(0px 0px 5px rgba($primary-color, 0.8));
+    }
+  }
+  &_title {
+    margin: 0 0 10px 0;
+    color: $primary-color;
+  }
+
+  &_ingredient-container {
+    border-top: 1px solid $primary-color;
+    border-bottom: 1px solid $primary-color;
+    height: 210px;
+    overflow-y: scroll;
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-gap: 10px;
+    @include scrollbar();
+  }
+  &_ingredient {
+    p {
+      margin: 4px;
+    }
+    img {
+      height: 120px;
+    }
+  }
+}

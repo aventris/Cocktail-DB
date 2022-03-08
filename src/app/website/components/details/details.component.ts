@@ -14,9 +14,16 @@ import { Router } from '@angular/router';
 })
 export class DetailsComponent implements OnInit {
   @Input() id!: string;
-
   loading = true;
+  iDetails = false;
+
+  toggleIDeatils() {
+    this.iDetails = !this.iDetails;
+  }
+
   cocktail: Cocktail | null = null;
+  ingridientList: any = [];
+  measureList: any = [];
 
   instructions: 'EN' | 'ES' | 'DE' | 'FR' | 'IT' = 'EN';
   ingredients = [
@@ -45,6 +52,8 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.cocktailService.getOne(this.id).subscribe((data) => {
       this.cocktail = data;
+      this.getIngredientList(data);
+      this.getMeasureList(data);
     });
   }
 
@@ -86,5 +95,26 @@ export class DetailsComponent implements OnInit {
       queryParams: { cocktail: null },
       queryParamsHandling: 'merge',
     });
+  }
+
+  handleTagFilter(type: string, tag: string) {
+    console.log(type, tag);
+    this.cocktailService.getByTag(type, tag);
+  }
+
+  getIngredientList(data: any) {
+    let ingredientList: any[] = [];
+    this.ingredients.forEach((ingredient) => {
+      if (data[this.getIngredients(ingredient)])
+        ingredientList.push(data[this.getIngredients(ingredient)]);
+    });
+    this.ingridientList = ingredientList;
+  }
+  getMeasureList(data: any) {
+    let measureList: any[] = [];
+    this.ingredients.forEach((ingredient) => {
+      measureList.push(data[this.getMeasures(ingredient)]);
+    });
+    this.measureList = measureList;
   }
 }

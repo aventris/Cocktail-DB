@@ -16,6 +16,9 @@ import { DetailsComponent } from './components/details/details.component';
 import { LoadingComponent } from './components/loading/loading.component';
 
 import { FormsModule } from '@angular/forms';
+import { IngredientsComponent } from './components/ingredients/ingredients.component';
+
+import { SentencePipe } from '../pipes/sentence.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,8 @@ import { FormsModule } from '@angular/forms';
     FilterItemComponent,
     DetailsComponent,
     LoadingComponent,
+    IngredientsComponent,
+    SentencePipe,
   ],
   imports: [CommonModule, WebsiteRoutingModule, FormsModule],
 })

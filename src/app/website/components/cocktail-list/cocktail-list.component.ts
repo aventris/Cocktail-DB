@@ -11,7 +11,8 @@ import { switchMap } from 'rxjs';
 export class CocktailListComponent implements OnInit {
   loading = false;
   cocktails: any[] = [];
-  test: Alcoholic[] = [];
+  title: string = '';
+  subtitle: string = '';
 
   constructor(private cocktailService: CocktailService) {}
 
@@ -19,7 +20,9 @@ export class CocktailListComponent implements OnInit {
     this.cocktailService.$cocktailList
       .pipe(
         switchMap((data) => {
-          this.cocktails = data;
+          this.cocktails = data.drinks;
+          this.title = data.title;
+          this.subtitle = data.subtitle;
           return this.cocktailService.$loading;
         })
       )

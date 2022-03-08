@@ -12,9 +12,12 @@
   gap: 10px;
   align-items: center;
   color: $text-high-color;
+  background-color: $surface-item-color;
   &:hover {
-    //color: $primary-color;
-    background-color: rgba($primary-color, 0.4);
+    color: $primary-color;
+    background-color: transparent;
+    border: 1px solid $primary-color;
+    border: 1px solid $primary-color;
   }
   &-img {
     width: 100%;
