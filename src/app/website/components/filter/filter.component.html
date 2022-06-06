@@ -1,10 +1,10 @@
 <div class="filter" id="otracosa">
-  <div #test class="filter_toggle" (click)="toggleTag()">
+  <div #filter class="filter_toggle" (click)="toggleTag()">
     <h3 class="filter_toggle-title">Filter by:</h3>
   </div>
   <div
     [ngClass]="{ filter_content: true, 'filter_content--hidden': !menuIsOpen }"
-    #menu
+    #filterMenu
   >
     <app-filter-list
       (handleTagClick)="handleAlcoholicTag($event)"

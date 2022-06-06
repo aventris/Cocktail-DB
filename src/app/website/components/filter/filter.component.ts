@@ -14,37 +14,28 @@ import { CocktailService } from '../../../services/cocktail.service';
   templateUrl: './filter.component.html',
   styleUrls: ['./filter.component.scss'],
 })
-export class FilterComponent implements OnInit, AfterViewInit {
+export class FilterComponent implements OnInit {
+  @ViewChild('filter') filter!: ElementRef;
+  @ViewChild('filterMenu') menu!: ElementRef;
+
   menuIsOpen = false;
   inside = false;
 
   constructor(
     private cocktailService: CocktailService,
     private renderer: Renderer2
-  ) {}
-
-  ngOnInit(): void {}
-
-  @ViewChild('test') toggleButton!: ElementRef;
-  @ViewChild('menu') menu!: ElementRef;
-
-  ngAfterViewInit(): void {
-    /*     this.renderer.listen('window', 'click', (e: Event) => {
-      console.log(e.target);
-      console.log(this.toggleButton.nativeElement);
-      console.log(this.menu.nativeElement);
-      console.log(
-        e.target !== this.toggleButton.nativeElement,
-        e.target !== this.menu.nativeElement
-      );
+  ) {
+    this.renderer.listen('window', 'click', (e: Event) => {
       if (
-        e.target !== this.toggleButton.nativeElement &&
+        !this.filter.nativeElement.contains(e.target) &&
         e.target !== this.menu.nativeElement
       ) {
         this.menuIsOpen = false;
       }
-    }); */
+    });
   }
+
+  ngOnInit(): void {}
 
   toggleTag() {
     this.menuIsOpen = !this.menuIsOpen;

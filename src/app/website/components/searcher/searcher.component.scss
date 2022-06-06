@@ -54,18 +54,18 @@ $filter-width: 120px;
 }
 
 .filter-options {
+  transition: all ease 0.5s;
+  z-index: 1;
   width: $filter-width;
   background-color: $surface-color;
   position: absolute;
   top: 35px;
   right: 0;
-  transition: all ease 0.5s;
-  box-shadow: 0 6px 4px -4px $background-color, 5px 0 5px -5px $background-color,
-    -5px 0 5px -5px $background-color;
-  transform: scaleY(1);
+  box-shadow: -2px 2px 4px 0 #000000, 2px 2px 4px 0 #000000;
   transform-origin: top;
+  transform: scaleY(1);
+
   &--hidden {
-    //display: none;
     transform: scaleY(0);
   }
   ul {

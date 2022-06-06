@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { CocktailService } from '../../../services/cocktail.service';
@@ -9,14 +15,27 @@ import { CocktailService } from '../../../services/cocktail.service';
   styleUrls: ['./searcher.component.scss'],
 })
 export class SearcherComponent implements OnInit {
+  @ViewChild('searchFilter') searchFilter!: ElementRef;
+  @ViewChild('searchFilterMenu') menu!: ElementRef;
+
   filterIsOpen = false;
   searchText = '';
   filterType = 'Cocktail';
   constructor(
     private cocktailService: CocktailService,
     private router: Router,
-    private route: ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private renderer: Renderer2
+  ) {
+    /*  this.renderer.listen('window', 'click', (e: Event) => {
+      if (
+        !this.searchFilter.nativeElement.contains(e.target) &&
+        e.target !== this.menu.nativeElement
+      ) {
+        this.filterIsOpen = false;
+      }
+    }); */
+  }
 
   ngOnInit(): void {}
 

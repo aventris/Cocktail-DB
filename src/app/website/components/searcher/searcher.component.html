@@ -12,10 +12,11 @@
       />
     </form>
 
-    <div class="searcher_filter" (click)="toggleFilter()">
-      <p>{{ filterType }}</p>
-      <img src="assets/icons/purple_down_arrow_icon.svg" alt="" />
+    <div class="searcher_filter" (click)="toggleFilter()" #searchFilter>
+      <p #searchFilter>{{ filterType }}</p>
+      <img #searchFilter src="assets/icons/purple_down_arrow_icon.svg" alt="" />
       <div
+        #searchFilterMenu
         [ngClass]="{
           'filter-options': true,
           'filter-options--hidden': !filterIsOpen
