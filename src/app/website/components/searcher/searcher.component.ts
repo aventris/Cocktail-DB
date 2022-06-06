@@ -7,12 +7,38 @@ import {
 } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+
 import { CocktailService } from '../../../services/cocktail.service';
 
 @Component({
   selector: 'app-searcher',
   templateUrl: './searcher.component.html',
   styleUrls: ['./searcher.component.scss'],
+  animations: [
+    trigger('toggleMenu', [
+      state(
+        'visible',
+        style({
+          transform: 'scaleY(1)',
+        })
+      ),
+      state(
+        'hidden',
+        style({
+          transform: 'scaleY(0.001)',
+        })
+      ),
+      transition('hidden => visible', [animate('300ms')]),
+      transition('visible => hidden', [animate('100ms')]),
+    ]),
+  ],
 })
 export class SearcherComponent implements OnInit {
   @ViewChild('searchFilter') searchFilter!: ElementRef;
@@ -27,14 +53,14 @@ export class SearcherComponent implements OnInit {
     private route: ActivatedRoute,
     private renderer: Renderer2
   ) {
-    /*  this.renderer.listen('window', 'click', (e: Event) => {
+    this.renderer.listen('window', 'click', (e: Event) => {
       if (
         !this.searchFilter.nativeElement.contains(e.target) &&
         e.target !== this.menu.nativeElement
       ) {
         this.filterIsOpen = false;
       }
-    }); */
+    });
   }
 
   ngOnInit(): void {}

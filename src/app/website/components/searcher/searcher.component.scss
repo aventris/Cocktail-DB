@@ -54,7 +54,6 @@ $filter-width: 120px;
 }
 
 .filter-options {
-  transition: all ease 0.5s;
   z-index: 1;
   width: $filter-width;
   background-color: $surface-color;
@@ -63,13 +62,10 @@ $filter-width: 120px;
   right: 0;
   box-shadow: -2px 2px 4px 0 #000000, 2px 2px 4px 0 #000000;
   transform-origin: top;
-  transform: scaleY(1);
-
-  &--hidden {
-    transform: scaleY(0);
-  }
   ul {
     list-style: none;
+    height: 100%;
+    width: 100%;
     padding: 0;
     margin: 0;
     li {
@@ -86,3 +82,8 @@ $filter-width: 120px;
     }
   }
 }
+
+/* .filter-options.hidden {
+  transform: scaleY(0);
+}
+ */

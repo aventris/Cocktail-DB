@@ -30,7 +30,7 @@ $height: 40px;
     transform-origin: top;
     overflow-y: auto;
     &--hidden {
-      transform: scaleY(0);
+      transform: scaleY(0.001);
     }
     @include box-shadow;
     @include scrollbar;

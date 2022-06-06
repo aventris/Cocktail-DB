@@ -16,11 +16,9 @@
       <p #searchFilter>{{ filterType }}</p>
       <img #searchFilter src="assets/icons/purple_down_arrow_icon.svg" alt="" />
       <div
+        [@toggleMenu]="filterIsOpen ? 'visible' : 'hidden'"
         #searchFilterMenu
-        [ngClass]="{
-          'filter-options': true,
-          'filter-options--hidden': !filterIsOpen
-        }"
+        class="filter-options"
       >
         <ul>
           <li (click)="handleFilter('Cocktail'); $event.stopPropagation()">
