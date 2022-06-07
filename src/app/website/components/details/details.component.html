@@ -1,5 +1,5 @@
-<div class="details_container">
-  <div class="details" *ngIf="cocktail">
+<div class="details_container" @toggleDetails>
+  <div class="details" *ngIf="!loading && cocktail" #details>
     <img
       (click)="onClose()"
       class="details_close-icon"
@@ -24,7 +24,9 @@
             </li>
           </ng-container>
         </ol>
-        <button (click)="toggleIDeatils()">Details</button>
+        <button (click)="toggleIDeatils(); $event.stopPropagation()">
+          Details
+        </button>
       </div>
     </div>
     <div class="details_tags">
@@ -70,9 +72,10 @@
   </div>
 </div>
 
-<app-ingredients
-  *ngIf="cocktail && iDetails"
-  [ingredients]="ingridientList"
-  [measures]="measureList"
-  (onClose)="toggleIDeatils()"
-></app-ingredients>
+<div class="modal" *ngIf="cocktail && iDetails">
+  <app-ingredients
+    [ingredients]="ingridientList"
+    [measures]="measureList"
+    (onClose)="toggleIDeatils()"
+  ></app-ingredients>
+</div>

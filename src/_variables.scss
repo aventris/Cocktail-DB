@@ -25,18 +25,21 @@ $success-color: #00b090;
 $background-variant: #ffffff;
 $surface-variant: #ffffff;
 
-$text-high-color: #ffffffde;
-$text-medium-color: #ffffff99;
-$text-disabled-color: #ffffff61;
-$text-high-variant: #000000de;
-$text-medium-variant: #00000099;
-$text-disabled-variant: #00000061;
+$text-high-color: rgba(255, 255, 255, 0.87);
+$text-medium-color: rgba(255, 255, 255, 0.6);
+$text-disabled-color: rgba(255, 255, 255, 0.38);
 
+$overlay-1dp: rgba(255, 255, 255, 0.09);
+$overlay-2dp: rgba(255, 255, 255, 0.11);
+$overlay-3dp: rgba(255, 255, 255, 0.12);
+
+$overlay-hover: rgba(255, 255, 255, 0.14);
 /******************************************/
 /***************    SIZES    **************/
 /******************************************/
 
 $header-height: 40px;
+$content-width: 800px;
 
 @mixin scrollbar {
   &::-webkit-scrollbar {

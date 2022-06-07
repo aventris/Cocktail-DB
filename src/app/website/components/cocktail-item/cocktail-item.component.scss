@@ -11,23 +11,24 @@
   justify-content: flex-start;
   gap: 10px;
   align-items: center;
+  cursor: pointer;
+
   color: $text-high-color;
-  background-color: $surface-item-color;
+  background-color: $overlay-2dp;
   &:hover {
-    color: $primary-color;
-    background-color: transparent;
-    border: 1px solid $primary-color;
-    border: 1px solid $primary-color;
+    color: $text-high-color;
+    color: #bb86fc;
+    background-color: $overlay-hover;
+    border-color: transparent;
   }
   &-img {
+    max-width: 160px;
     width: 100%;
-    //height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     img {
       border-radius: 50%;
-      //height: 100%;
       width: 100%;
     }
   }

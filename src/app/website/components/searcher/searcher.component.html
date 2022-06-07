@@ -1,5 +1,5 @@
 <div class="searcher">
-  <h3 class="searcher_title">Search cocktail by name or ingredient</h3>
+  <h2 class="searcher_title">Search cocktail by name or ingredient</h2>
   <div class="searcher_content">
     <form (submit)="onSubmit()">
       <input
@@ -13,8 +13,10 @@
     </form>
 
     <div class="searcher_filter" (click)="toggleFilter()" #searchFilter>
-      <p #searchFilter>{{ filterType }}</p>
-      <img #searchFilter src="assets/icons/purple_down_arrow_icon.svg" alt="" />
+      <div class="filter_wrapper">
+        <p>{{ filterType }}</p>
+        <img src="assets/icons/purple_down_arrow_icon.svg" alt="" />
+      </div>
       <div
         [@toggleMenu]="filterIsOpen ? 'visible' : 'hidden'"
         #searchFilterMenu

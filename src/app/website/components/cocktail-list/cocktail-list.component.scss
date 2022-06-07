@@ -1,10 +1,11 @@
 @import "~src/variables";
 
 .cocktails {
-  max-width: 600px;
+  width: 80%;
+  max-width: $content-width;
   margin: 20px auto;
   padding: 20px;
-  background-color: $surface-color;
+  background-color: $overlay-1dp;
   border-radius: 5px;
 
   &_list {
@@ -15,6 +16,10 @@
   }
   &_title {
     color: $primary-color;
+    text-align: center;
+  }
+  &_category {
+    color: $text-high-color;
     text-align: center;
   }
 }

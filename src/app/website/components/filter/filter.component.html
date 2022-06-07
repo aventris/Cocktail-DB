@@ -1,30 +1,32 @@
 <div class="filter" id="otracosa">
   <div #filter class="filter_toggle" (click)="toggleTag()">
-    <h3 class="filter_toggle-title">Filter by:</h3>
+    <h3 class="filter_toggle-title">Filter by tag</h3>
   </div>
   <div
     [ngClass]="{ filter_content: true, 'filter_content--hidden': !menuIsOpen }"
     #filterMenu
   >
-    <app-filter-list
-      (handleTagClick)="handleAlcoholicTag($event)"
-      type="a"
-      title="Alcoholic"
-    ></app-filter-list>
-    <app-filter-list
-      (handleTagClick)="handleCategoryTag($event)"
-      [type]="'c'"
-      title="Category"
-    ></app-filter-list>
-    <app-filter-list
-      (handleTagClick)="handleIngredientTag($event)"
-      [type]="'i'"
-      title="Ingredient"
-    ></app-filter-list>
-    <app-filter-list
-      (handleTagClick)="handleGlassTag($event)"
-      [type]="'g'"
-      title="Glass"
-    ></app-filter-list>
+    <div>
+      <app-filter-list
+        (handleTagClick)="handleAlcoholicTag($event)"
+        type="a"
+        title="Alcoholic"
+      ></app-filter-list>
+      <app-filter-list
+        (handleTagClick)="handleCategoryTag($event)"
+        [type]="'c'"
+        title="Category"
+      ></app-filter-list>
+      <app-filter-list
+        (handleTagClick)="handleIngredientTag($event)"
+        [type]="'i'"
+        title="Ingredient"
+      ></app-filter-list>
+      <app-filter-list
+        (handleTagClick)="handleGlassTag($event)"
+        [type]="'g'"
+        title="Glass"
+      ></app-filter-list>
+    </div>
   </div>
 </div>

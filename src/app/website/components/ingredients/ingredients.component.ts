@@ -1,4 +1,12 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  HostListener,
+  ElementRef,
+} from '@angular/core';
 
 @Component({
   selector: 'app-ingredients',
@@ -10,10 +18,15 @@ export class IngredientsComponent implements OnInit {
   @Input() measures: any;
   @Output() onClose = new EventEmitter();
 
-  constructor() {}
+  @HostListener('document:click', ['$event'])
+  clickOutside(e: Event) {
+    if (!this.elementRef.nativeElement.contains(e.target)) this.onClose.emit();
+  }
+
+  constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-    console.log(this.ingredients, this.measures);
+    //console.log(this.ingredients, this.measures);
   }
 
   getImgUrl(ingredient: string) {
@@ -23,6 +36,7 @@ export class IngredientsComponent implements OnInit {
   }
 
   onClick() {
+    debugger;
     this.onClose.emit();
   }
 }

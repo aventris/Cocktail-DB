@@ -3,6 +3,7 @@
   routerLink="/home"
   [queryParams]="{ cocktail: cocktail.idDrink }"
   queryParamsHandling="merge"
+  (click)="$event.stopPropagation()"
 >
   <div class="cocktail_item-img">
     <img [src]="cocktail.strDrinkThumb" alt="" />

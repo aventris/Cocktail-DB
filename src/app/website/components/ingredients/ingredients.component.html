@@ -1,21 +1,19 @@
-<div class="modal">
-  <div class="idetails">
-    <img
-      (click)="onClick()"
-      class="idetails_close-icon"
-      src="assets/icons/close_icon_purple.svg"
-      alt=""
-    />
-    <h3 class="idetails_title">Ingredients</h3>
-    <div class="idetails_ingredient-container">
-      <div
-        class="idetails_ingredient"
-        *ngFor="let ingredient of ingredients; let i = index"
-      >
-        <p>{{ i + 1 + ". " + ingredients[i] }}</p>
-        <img [src]="getImgUrl(ingredient)" alt="" />
-        <p>{{ measures[i] }}</p>
-      </div>
+<div class="idetails">
+  <img
+    (click)="onClick(); $event.stopPropagation()"
+    class="idetails_close-icon"
+    src="assets/icons/close_icon_purple.svg"
+    alt=""
+  />
+  <h3 class="idetails_title">Ingredients</h3>
+  <div class="idetails_ingredient-container">
+    <div
+      class="idetails_ingredient"
+      *ngFor="let ingredient of ingredients; let i = index"
+    >
+      <p>{{ i + 1 + ". " + ingredients[i] }}</p>
+      <img [src]="getImgUrl(ingredient)" alt="" />
+      <p>{{ measures[i] }}</p>
     </div>
   </div>
 </div>

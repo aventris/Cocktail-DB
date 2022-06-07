@@ -1,4 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Renderer2,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+  OnDestroy,
+} from '@angular/core';
 import { Cocktail } from '../../../models/cocktail.model';
 
 import { CocktailService } from '../../../services/cocktail.service';
@@ -7,16 +15,27 @@ import { DataMappingService } from '../../../services/data-mapping.service';
 
 import { Router } from '@angular/router';
 
+import { trigger, style, animate, transition } from '@angular/animations';
+
 @Component({
   selector: 'app-details',
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
+  animations: [
+    trigger('toggleDetails', [
+      transition(':enter', [
+        style({ transform: 'scale(0)' }),
+        animate('300ms', style({ transform: 'scale(1)' })),
+      ]),
+    ]),
+  ],
 })
-export class DetailsComponent implements OnInit {
+export class DetailsComponent implements OnInit, OnDestroy {
+  @ViewChild('details') details: ElementRef | null = null;
   @Input() id!: string;
   loading = true;
   iDetails = false;
-
+  private listener: any;
   toggleIDeatils() {
     this.iDetails = !this.iDetails;
   }
@@ -46,7 +65,8 @@ export class DetailsComponent implements OnInit {
   constructor(
     private cocktailService: CocktailService,
     private dataMappingService: DataMappingService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit(): void {
@@ -54,6 +74,23 @@ export class DetailsComponent implements OnInit {
       this.cocktail = data;
       this.getIngredientList(data);
       this.getMeasureList(data);
+      this.setEventListener();
+      this.loading = false;
+    });
+  }
+  ngOnDestroy(): void {
+    this.listener();
+  }
+
+  setEventListener() {
+    this.listener = this.renderer.listen('document', 'click', (e: Event) => {
+      if (this.details) {
+        if (!this.iDetails) {
+          if (!this.details.nativeElement.contains(e.target)) {
+            this.onClose();
+          }
+        }
+      }
     });
   }
 
@@ -88,6 +125,7 @@ export class DetailsComponent implements OnInit {
   }
 
   onClose() {
+    console.log('OnClose');
     this.removeQueryParams();
   }
   removeQueryParams() {
