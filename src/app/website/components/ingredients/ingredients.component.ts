@@ -36,7 +36,6 @@ export class IngredientsComponent implements OnInit {
   }
 
   onClick() {
-    debugger;
     this.onClose.emit();
   }
 }
