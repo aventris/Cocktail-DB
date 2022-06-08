@@ -1,0 +1,45 @@
+@import "~src/variables";
+
+.ingredients-wrapper {
+  h2 {
+    color: $primary-color;
+    margin: 20px 0;
+    text-align: center;
+  }
+}
+
+.ingredients {
+  width: 80%;
+  max-width: $content-width;
+
+  background-color: aqua;
+  display: grid;
+  margin: 0 auto;
+  padding: 20px;
+  grid-template-columns: repeat(auto-fill, (minmax(150px, 1fr)));
+  grid-gap: 10px;
+  background-color: $overlay-1dp;
+}
+
+.ingredient {
+  //width: 150px;
+  // height: 300px;
+  padding: 10px;
+  background-color: $overlay-2dp;
+  color: $text-high-color;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+  border-radius: 5px;
+  &:hover {
+    background-color: $overlay-hover;
+    color: $primary-color;
+  }
+  img {
+    margin: 0 auto;
+    width: 60px;
+  }
+  span {
+    text-align: center;
+  }
+}

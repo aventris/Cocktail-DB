@@ -125,7 +125,6 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   onClose() {
-    console.log('OnClose');
     this.removeQueryParams();
   }
   removeQueryParams() {

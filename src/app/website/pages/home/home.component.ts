@@ -11,14 +11,17 @@ import { CocktailService } from '../../../services/cocktail.service';
 })
 export class HomeComponent implements OnInit {
   details: string | null = null;
-
-  constructor(private route: ActivatedRoute) {}
+  prevParams: any = {};
+  constructor(
+    private route: ActivatedRoute,
+    private cocktailService: CocktailService
+  ) {}
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
-      if (params) {
-        this.details = params['cocktail'];
-      }
+      this.cocktailService.updateCocktailList(params);
+      this.details = params['cocktail'];
+      this.scrollToTop();
     });
   }
 

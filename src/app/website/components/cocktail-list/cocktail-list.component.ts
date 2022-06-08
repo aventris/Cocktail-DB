@@ -29,6 +29,6 @@ export class CocktailListComponent implements OnInit {
       .subscribe((data) => {
         this.loading = data;
       });
-    this.cocktailService.getCocktails();
+    //this.cocktailService.getCocktails();
   }
 }

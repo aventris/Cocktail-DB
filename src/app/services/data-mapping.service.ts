@@ -116,7 +116,7 @@ export class DataMappingService {
       : 'strInstructionsIT';
   }
 
-  MapFilter(type: string): string {
+  mapAPIFilter(type: string): string {
     return type === 'search_i'
       ? 'filter.php?i'
       : type === 'alcoholic'

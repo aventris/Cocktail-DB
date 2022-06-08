@@ -14,6 +14,7 @@ import { FilterListComponent } from './components/filter-list/filter-list.compon
 import { FilterItemComponent } from './components/filter-item/filter-item.component';
 import { DetailsComponent } from './components/details/details.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { IngredientsPageComponent } from './pages/ingredients/ingredients-page.component';
 
 import { FormsModule } from '@angular/forms';
 import { IngredientsComponent } from './components/ingredients/ingredients.component';
@@ -25,6 +26,7 @@ import { SentencePipe } from '../pipes/sentence.pipe';
     HeaderComponent,
     LayoutComponent,
     HomeComponent,
+    IngredientsPageComponent,
     CocktailDetailsComponent,
     CocktailListComponent,
     CocktailItemComponent,

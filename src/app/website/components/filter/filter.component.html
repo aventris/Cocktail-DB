@@ -8,24 +8,24 @@
   >
     <div>
       <app-filter-list
-        (handleTagClick)="handleAlcoholicTag($event)"
+        (handleTagClick)="handleNavigation($event.type, $event.tag)"
         type="a"
         title="Alcoholic"
       ></app-filter-list>
       <app-filter-list
-        (handleTagClick)="handleCategoryTag($event)"
+        (handleTagClick)="handleNavigation($event.type, $event.tag)"
         [type]="'c'"
         title="Category"
       ></app-filter-list>
       <app-filter-list
-        (handleTagClick)="handleIngredientTag($event)"
-        [type]="'i'"
-        title="Ingredient"
-      ></app-filter-list>
-      <app-filter-list
-        (handleTagClick)="handleGlassTag($event)"
+        (handleTagClick)="handleNavigation($event.type, $event.tag)"
         [type]="'g'"
         title="Glass"
+      ></app-filter-list>
+      <app-filter-list
+        (handleTagClick)="handleNavigation($event.type, $event.tag)"
+        [type]="'i'"
+        title="Ingredient"
       ></app-filter-list>
     </div>
   </div>

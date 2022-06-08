@@ -18,6 +18,7 @@ const API = environment.API;
 export class CocktailService {
   private cocktailList = new BehaviorSubject(<any>[]);
   private loading = new BehaviorSubject(false);
+  private prevParams: any = {};
 
   $cocktailList = this.cocktailList.asObservable();
   $loading = this.loading.asObservable();
@@ -29,31 +30,45 @@ export class CocktailService {
     private router: Router
   ) {}
 
-  getFilterList(type: 'c' | 'g' | 'i' | 'a') {
-    return this.http.get<[]>(`${API}/list.php?${type}=list`);
+  updateCocktailList(params: any) {
+    //debugger;
+    if (Object.keys(params).length > 0) {
+      // Check if query params contain filter and tag
+      if (params['filter'] && params['tag']) {
+        if (
+          params['filter'] !== this.prevParams['filter'] ||
+          params['tag'] !== this.prevParams['tag']
+        ) {
+          this.getByTag(params['filter'], params['tag']);
+        }
+        // Check if query params contain search_c
+      } else if (params['search_c']) {
+        if (params['search_c'] !== this.prevParams['search_c']) {
+          this.getByName('s', params['search_c']);
+        }
+        // Check if query params contain search_i
+      } else if (params['search_i']) {
+        if (params['search_i'] !== this.prevParams['search_i']) {
+          this.getByName('i', params['search_i']);
+        }
+      }
+      // There's no query params
+    } else {
+      if (!this.prevParams['cocktail']) this.getAlcoholic();
+    }
+    //console.log('Current params', params);
+    this.prevParams = params;
   }
 
-  getCocktails() {
-    this.route.queryParams.pipe(take(1)).subscribe((params) => {
-      let data: string | null = null;
-      let filter: string | null = null;
-      if (params['search_c']) {
-        data = params['search_c'];
-        filter = 's';
-      } else if (params['search_i']) {
-        data = params['search_i'];
-        filter = 'i';
-      }
-      if (data && filter) {
-        this.getByName(filter, data);
-      } else this.getAlcoholic();
-    });
+  getFilterList(type: 'c' | 'g' | 'i' | 'a') {
+    return this.http.get<[]>(`${API}/list.php?${type}=list`);
   }
 
   getAlcoholic() {
     this.http
       .get<AlcoholicList>(`${API}/filter.php?a=Alcoholic`)
       .subscribe((data) => {
+        console.log('Fetch By Alcoholic');
         this.cocktailList.next({
           ...data,
           title: 'Alcoholic',
@@ -69,18 +84,18 @@ export class CocktailService {
   }
 
   getByName(filter: string, search: string) {
+    console.log('busqueda: ', filter, search);
     let queryStr = 'i' === filter ? 'filter.php' : 'search.php';
     this.loading.next(true);
     this.http
       .get<CocktailResponse>(`${API}/${queryStr}?${filter}=${search}`)
       .subscribe((data) => {
+        console.log('Fetch By Name');
         if (data) {
           this.cocktailList.next({
             ...data,
             title: search,
-            subtitle: `Search ${
-              queryStr === 'i' ? 'by ingredient' : 'by name'
-            }`,
+            subtitle: `Search ${filter === 'i' ? 'by ingredient' : 'by name'}`,
           });
           this.loading.next(false);
         }
@@ -88,27 +103,30 @@ export class CocktailService {
   }
 
   getByTag(type: string, tag: string) {
-    console.log('Service: ', type, tag);
-    let urlFilter = this.dataMappingService.MapFilter(type);
+    let urlFilter = this.dataMappingService.mapAPIFilter(type);
     let url = `${API}/${urlFilter}=${encodeURIComponent(tag)}`;
     this.http.get<any>(url).subscribe((data) => {
+      console.log('Fetch By tag');
       if (data) {
         this.cocktailList.next({
           ...data,
           title: decodeURI(tag),
           subtitle: type,
         });
-        this.router.navigate([], {
-          queryParams: {
-            search_c: null,
-            search_i: null,
-            cocktail: null,
-            filter: type,
-            tag: tag,
-          },
-          queryParamsHandling: 'merge',
-        });
+        this.setURLQueryParams(type, tag);
       }
+    });
+  }
+
+  setURLQueryParams(type: string, tag: string) {
+    this.router.navigate(['/home'], {
+      queryParams: {
+        search_c: null,
+        search_i: null,
+        filter: type,
+        tag: tag,
+      },
+      queryParamsHandling: 'merge',
     });
   }
 

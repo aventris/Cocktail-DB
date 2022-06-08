@@ -1,11 +1,4 @@
-import {
-  Component,
-  ViewChild,
-  OnInit,
-  ElementRef,
-  ViewChildren,
-  AfterViewInit,
-} from '@angular/core';
+import { Component, ViewChild, OnInit, ElementRef } from '@angular/core';
 import { Renderer2 } from '@angular/core';
 import { CocktailService } from '../../../services/cocktail.service';
 
@@ -43,20 +36,9 @@ export class FilterComponent implements OnInit {
   closeMenu() {
     this.menuIsOpen = false;
   }
-  handleAlcoholicTag(event: any) {
-    this.cocktailService.getByTag('alcoholic', event.tag);
-    this.closeMenu();
-  }
-  handleIngredientTag(event: any) {
-    this.cocktailService.getByTag('ingredient', event.tag);
-    this.closeMenu();
-  }
-  handleCategoryTag(event: any) {
-    this.cocktailService.getByTag('category', event.tag);
-    this.closeMenu();
-  }
-  handleGlassTag(event: any) {
-    this.cocktailService.getByTag('glass', event.tag);
-    this.closeMenu();
+
+  handleNavigation(type: string, tag: string) {
+    console.log('Update query params: ', type, tag);
+    this.cocktailService.setURLQueryParams(type, tag);
   }
 }

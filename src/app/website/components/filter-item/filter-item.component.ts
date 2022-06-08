@@ -20,6 +20,6 @@ export class FilterItemComponent implements OnInit {
   }
 
   onClick() {
-    this.handleClick.emit({ tag: this.string });
+    this.handleClick.emit(this.string);
   }
 }

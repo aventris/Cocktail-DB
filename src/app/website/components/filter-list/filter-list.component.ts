@@ -2,6 +2,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { CategoryService } from '../../../services/category.service';
 
+const MAP_FILTER_TYPE = {
+  a: 'alcoholic',
+  c: 'category',
+  g: 'glass',
+  i: 'ingredient',
+};
+
 @Component({
   selector: 'app-filter-list',
   templateUrl: './filter-list.component.html',
@@ -44,7 +51,8 @@ export class FilterListComponent implements OnInit {
     }
   }
 
-  onClick(event: any) {
-    this.handleTagClick.emit(event);
+  onClick(tag: string) {
+    console.log('Click on list:', tag);
+    this.handleTagClick.emit({ type: MAP_FILTER_TYPE[this.type], tag: tag });
   }
 }

@@ -1,0 +1,13 @@
+<div class="ingredients-wrapper">
+  <h2>Click on ingridient to filter drinks by ingredient</h2>
+  <div class="ingredients">
+    <div
+      class="ingredient"
+      *ngFor="let ingredient of ingredients"
+      (click)="handleIngredientTag(ingredient)"
+    >
+      <img [src]="getImgUrl(ingredient)" alt="" />
+      <span>{{ ingredient }}</span>
+    </div>
+  </div>
+</div>

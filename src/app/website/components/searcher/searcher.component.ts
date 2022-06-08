@@ -83,6 +83,5 @@ export class SearcherComponent implements OnInit {
           : { search_i: this.searchText }),
       },
     });
-    this.cocktailService.getByName(filter, this.searchText);
   }
 }
