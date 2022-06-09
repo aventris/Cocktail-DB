@@ -1,9 +1,21 @@
 <div class="ingredients-wrapper">
+  <h2>Search ingridient</h2>
+  <form (submit)="handleSearch($event)" class="ingredients-search">
+    <input
+      [(ngModel)]="searchString"
+      name="searchIngredient"
+      placeholder="Ingredient name"
+      type="text"
+    />
+    <button type="submit">
+      <img src="assets/icons/magnifier_icon.svg" alt="" />
+    </button>
+  </form>
   <h2>Click on ingridient to filter drinks by ingredient</h2>
   <div class="ingredients">
     <div
       class="ingredient"
-      *ngFor="let ingredient of ingredients"
+      *ngFor="let ingredient of ingredientList"
       (click)="handleIngredientTag(ingredient)"
     >
       <img [src]="getImgUrl(ingredient)" alt="" />

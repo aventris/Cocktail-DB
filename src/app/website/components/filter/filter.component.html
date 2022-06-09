@@ -3,7 +3,12 @@
     <h3 class="filter_toggle-title">Filter by tag</h3>
   </div>
   <div
-    [ngClass]="{ filter_content: true, 'filter_content--hidden': !menuIsOpen }"
+    [ngClass]="{
+      filter_content: true,
+      hidden: !menuIsOpen,
+      visible: menuIsOpen
+    }"
+    class="filter_content hidden"
     #filterMenu
   >
     <div>

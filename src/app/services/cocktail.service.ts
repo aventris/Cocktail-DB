@@ -31,10 +31,9 @@ export class CocktailService {
   ) {}
 
   updateCocktailList(params: any) {
-    //debugger;
     if (Object.keys(params).length > 0) {
       // Check if query params contain filter and tag
-      if (params['filter'] && params['tag']) {
+      if (params['filter'] !== undefined && params['tag'] !== undefined) {
         if (
           params['filter'] !== this.prevParams['filter'] ||
           params['tag'] !== this.prevParams['tag']
@@ -42,12 +41,12 @@ export class CocktailService {
           this.getByTag(params['filter'], params['tag']);
         }
         // Check if query params contain search_c
-      } else if (params['search_c']) {
+      } else if (params['search_c'] !== undefined) {
         if (params['search_c'] !== this.prevParams['search_c']) {
           this.getByName('s', params['search_c']);
         }
         // Check if query params contain search_i
-      } else if (params['search_i']) {
+      } else if (params['search_i'] !== undefined) {
         if (params['search_i'] !== this.prevParams['search_i']) {
           this.getByName('i', params['search_i']);
         }
@@ -84,7 +83,10 @@ export class CocktailService {
   }
 
   getByName(filter: string, search: string) {
-    console.log('busqueda: ', filter, search);
+    if (search.length == 0) {
+      this.resetQueryParams();
+      return;
+    }
     let queryStr = 'i' === filter ? 'filter.php' : 'search.php';
     this.loading.next(true);
     this.http
@@ -115,6 +117,17 @@ export class CocktailService {
         });
         this.setURLQueryParams(type, tag);
       }
+    });
+  }
+  resetQueryParams() {
+    this.router.navigate(['/home'], {
+      queryParams: {
+        search_c: null,
+        search_i: null,
+        filter: null,
+        tag: null,
+      },
+      queryParamsHandling: 'merge',
     });
   }
 

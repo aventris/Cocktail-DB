@@ -15,7 +15,8 @@
 
   color: $text-high-color;
   background-color: $overlay-2dp;
-  &:hover {
+  &:hover,
+  &:active {
     color: $text-high-color;
     color: #bb86fc;
     background-color: $overlay-hover;

@@ -9,7 +9,8 @@
   align-items: center;
   color: $text-medium-color;
   cursor: pointer;
-  &:hover {
+  &:hover,
+  &:active {
     color: $primary-color;
     background-color: $overlay-hover;
   }

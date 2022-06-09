@@ -8,7 +8,9 @@ import { CocktailService } from '../../../services/cocktail.service';
   styleUrls: ['./ingredients-page.component.scss'],
 })
 export class IngredientsPageComponent implements OnInit {
-  ingredients: any = [];
+  allIngredients: any = [];
+  ingredientList: Array<string> = [];
+  searchString: string = '';
 
   constructor(
     private categoryService: CategoryService,
@@ -17,7 +19,6 @@ export class IngredientsPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.categoryService.getIngredients().subscribe((data) => {
-      //console.log(data);
       let ingredientArray = data.drinks.map((el) => el.strIngredient1);
 
       ingredientArray.sort((a: string, b: string) => {
@@ -27,13 +28,11 @@ export class IngredientsPageComponent implements OnInit {
         else if (str1 > str2) return 1;
         return 0;
       });
-      //console.log(sortedIngredients);
 
-      this.ingredients = ingredientArray;
+      this.allIngredients = this.ingredientList = ingredientArray;
     });
   }
   getImgUrl(ingredient: string) {
-    //console.log('Getting image: ', ingredient);
     return `http://www.thecocktaildb.com/images/ingredients/${encodeURI(
       ingredient
     )}-Medium.png`;
@@ -42,5 +41,17 @@ export class IngredientsPageComponent implements OnInit {
   handleIngredientTag(tag: string) {
     console.log('click ', tag);
     this.cocktailService.getByTag('ingredient', tag);
+  }
+
+  handleSearch(e: Event) {
+    e.preventDefault();
+    if (this.searchString.length === 0)
+      this.ingredientList = this.allIngredients;
+    else {
+      let aux = [...this.allIngredients];
+      this.ingredientList = aux.filter((ingredient) =>
+        ingredient.toLowerCase().includes(this.searchString.toLowerCase())
+      );
+    }
   }
 }

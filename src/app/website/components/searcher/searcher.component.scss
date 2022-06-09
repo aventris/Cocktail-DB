@@ -24,21 +24,49 @@ $filter-width: 120px;
     align-items: center;
   }
 
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-text-fill-color: $text-high-color !important;
+  }
+
   form {
     width: 100%;
     height: 100%;
-  }
-  &_input {
-    padding: 0 10px;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    outline: none;
-    border: 1px solid $overlay-1dp;
-    background-color: $overlay-2dp;
-    color: $text-high-color;
-    &:focus {
-      border: 1px solid $primary-color;
+    display: flex;
+    gap: 5px;
+    input {
+      padding: 0 10px;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      outline: none;
+      border: 1px solid $overlay-2dp;
+      background-color: $overlay-1dp;
+      color: $text-high-color;
+      &:focus {
+        border: 1px solid $primary-color;
+      }
+    }
+    button {
+      width: 40px;
+      height: 100%;
+      border-radius: 5px;
+      border: none;
+      background-color: transparent;
+      &:hover {
+        background-color: $overlay-1dp;
+      }
+      &:active {
+        background-color: $overlay-2dp;
+      }
+      img {
+        aspect-ratio: 1/1;
+        height: 100%;
+        margin: auto;
+      }
     }
   }
 
