@@ -18,10 +18,10 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.scrollToTop();
     this.route.queryParams.subscribe((params) => {
       this.cocktailService.updateCocktailList(params);
       this.details = params['cocktail'];
-      this.scrollToTop();
     });
   }
 
