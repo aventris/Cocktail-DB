@@ -11,9 +11,9 @@
       class="idetails_ingredient"
       *ngFor="let ingredient of ingredients; let i = index"
     >
-      <p>{{ i + 1 + ". " + ingredients[i] }}</p>
-      <img [src]="getImgUrl(ingredient)" alt="" />
       <p>{{ measures[i] }}</p>
+      <p>{{ ingredients[i] }}</p>
+      <img [src]="getImgUrl(ingredient)" alt="" />
     </div>
   </div>
 </div>
