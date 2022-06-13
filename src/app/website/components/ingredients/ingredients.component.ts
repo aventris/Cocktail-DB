@@ -25,9 +25,7 @@ export class IngredientsComponent implements OnInit {
 
   constructor(private elementRef: ElementRef) {}
 
-  ngOnInit(): void {
-    //console.log(this.ingredients, this.measures);
-  }
+  ngOnInit(): void {}
 
   getImgUrl(ingredient: string) {
     return `http://www.thecocktaildb.com/images/ingredients/${encodeURI(

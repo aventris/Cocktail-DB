@@ -1,4 +1,5 @@
-$radius: 30px;
+@import "src/variables";
+/* $radius: 30px;
 div {
   width: 100%;
   height: 100%;
@@ -78,5 +79,34 @@ div {
   }
   to {
     background-color: rgba(grey, 0);
+  }
+} */
+div {
+  position: relative;
+  z-index: -1;
+}
+.loader {
+  $background-border: 10px solid rgba($primary-color, 0.18);
+  margin: auto;
+  border: 10px solid $background-border;
+  border-radius: 50%;
+  border-top: 10px solid $primary-color;
+  border-bottom: $background-border;
+  border-left: $background-border;
+  border-right: $background-border;
+  width: 100px;
+  height: 100px;
+  animation: spinner 2s linear infinite;
+  z-index: 0;
+  -webkit-animation-fill-mode: initial; //Changed from both to initial
+  animation-fill-mode: initial; /*Changed from both to initial*/
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

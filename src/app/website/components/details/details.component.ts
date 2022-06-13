@@ -135,8 +135,7 @@ export class DetailsComponent implements OnInit, OnDestroy {
   }
 
   handleTagFilter(type: string, tag: string) {
-    console.log(type, tag);
-    this.cocktailService.getByTag(type, tag);
+    this.cocktailService.getByTag(type, tag, true);
   }
 
   getIngredientList(data: any) {

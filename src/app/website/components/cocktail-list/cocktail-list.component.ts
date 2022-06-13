@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { CocktailService } from '../../../services/cocktail.service';
-import { Alcoholic } from '../../../models/list.model';
+//import { Alcoholic } from '../../../models/list.model';
 import { switchMap } from 'rxjs';
 @Component({
   selector: 'app-cocktail-list',
@@ -9,10 +9,11 @@ import { switchMap } from 'rxjs';
   styleUrls: ['./cocktail-list.component.scss'],
 })
 export class CocktailListComponent implements OnInit {
-  loading = false;
+  loading: boolean = false;
   cocktails: any[] = [];
   title: string = '';
   subtitle: string = '';
+  aux = false;
 
   constructor(private cocktailService: CocktailService) {}
 
@@ -29,6 +30,5 @@ export class CocktailListComponent implements OnInit {
       .subscribe((data) => {
         this.loading = data;
       });
-    //this.cocktailService.getCocktails();
   }
 }

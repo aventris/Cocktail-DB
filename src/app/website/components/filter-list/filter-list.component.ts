@@ -52,7 +52,6 @@ export class FilterListComponent implements OnInit {
   }
 
   onClick(tag: string) {
-    console.log('Click on list:', tag);
     this.handleTagClick.emit({ type: MAP_FILTER_TYPE[this.type], tag: tag });
   }
 }

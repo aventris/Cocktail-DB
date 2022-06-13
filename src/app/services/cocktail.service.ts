@@ -55,7 +55,6 @@ export class CocktailService {
     } else {
       if (!this.prevParams['cocktail']) this.getAlcoholic();
     }
-    //console.log('Current params', params);
     this.prevParams = params;
   }
 
@@ -64,15 +63,16 @@ export class CocktailService {
   }
 
   getAlcoholic() {
+    this.loading.next(true);
     this.http
       .get<AlcoholicList>(`${API}/filter.php?a=Alcoholic`)
       .subscribe((data) => {
-        console.log('Fetch By Alcoholic');
         this.cocktailList.next({
           ...data,
           title: 'Alcoholic',
           subtitle: 'Category',
         });
+        this.loading.next(false);
       });
   }
 
@@ -83,16 +83,15 @@ export class CocktailService {
   }
 
   getByName(filter: string, search: string) {
+    this.loading.next(true);
     if (search.length == 0) {
       this.resetQueryParams();
       return;
     }
     let queryStr = 'i' === filter ? 'filter.php' : 'search.php';
-    this.loading.next(true);
     this.http
       .get<CocktailResponse>(`${API}/${queryStr}?${filter}=${search}`)
       .subscribe((data) => {
-        console.log('Fetch By Name');
         if (data) {
           this.cocktailList.next({
             ...data,
@@ -104,11 +103,12 @@ export class CocktailService {
       });
   }
 
-  getByTag(type: string, tag: string) {
+  getByTag(type: string, tag: string, removeCocktail: boolean = false) {
+    if (removeCocktail) this.closeCocktail();
+    this.loading.next(true);
     let urlFilter = this.dataMappingService.mapAPIFilter(type);
     let url = `${API}/${urlFilter}=${encodeURIComponent(tag)}`;
     this.http.get<any>(url).subscribe((data) => {
-      console.log('Fetch By tag');
       if (data) {
         this.cocktailList.next({
           ...data,
@@ -116,6 +116,7 @@ export class CocktailService {
           subtitle: type,
         });
         this.setURLQueryParams(type, tag);
+        this.loading.next(false);
       }
     });
   }
@@ -143,6 +144,14 @@ export class CocktailService {
     });
   }
 
+  closeCocktail() {
+    this.router.navigate(['/home'], {
+      queryParams: {
+        cocktail: null,
+      },
+      queryParamsHandling: 'merge',
+    });
+  }
   // TODO
 
   // Put tags on cocktail details. Make an menu and queryparams handler to remove them when something happens

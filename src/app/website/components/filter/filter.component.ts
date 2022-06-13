@@ -17,7 +17,6 @@ export class FilterComponent implements OnInit {
     private cocktailService: CocktailService,
     private renderer: Renderer2
   ) {
-    console.log(this.menuIsOpen);
     this.renderer.listen('window', 'click', (e: Event) => {
       if (
         !this.filter.nativeElement.contains(e.target) &&
@@ -28,21 +27,16 @@ export class FilterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    console.log(this.menuIsOpen);
-  }
+  ngOnInit(): void {}
 
   toggleTag() {
-    console.log('Toggle tag');
     this.menuIsOpen = !this.menuIsOpen;
   }
   closeMenu() {
-    console.log('Close menu');
     this.menuIsOpen = false;
   }
 
   handleNavigation(type: string, tag: string) {
-    console.log('Update query params: ', type, tag);
     this.cocktailService.setURLQueryParams(type, tag);
   }
 }

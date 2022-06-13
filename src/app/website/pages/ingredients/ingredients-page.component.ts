@@ -39,7 +39,6 @@ export class IngredientsPageComponent implements OnInit {
   }
 
   handleIngredientTag(tag: string) {
-    console.log('click ', tag);
     this.cocktailService.getByTag('ingredient', tag);
   }
 

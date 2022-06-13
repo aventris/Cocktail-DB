@@ -1,12 +1,17 @@
 <div class="cocktails">
-  <h2 class="cocktails_title">Cocktails</h2>
-  <h4 class="cocktails_category">
-    {{ (subtitle | sentence) + ": " + (title | sentence) }}
-  </h4>
-  <div class="cocktails_list">
-    <app-cocktail-item
-      [cocktail]="cocktail"
-      *ngFor="let cocktail of cocktails"
-    ></app-cocktail-item>
-  </div>
+  <ng-container *ngIf="!loading; else loadingAnimation">
+    <h2 class="cocktails_title">Cocktails</h2>
+    <h4 class="cocktails_category">
+      {{ (subtitle | sentence) + ": " + (title | sentence) }}
+    </h4>
+    <div class="cocktails_list">
+      <app-cocktail-item
+        [cocktail]="cocktail"
+        *ngFor="let cocktail of cocktails"
+      ></app-cocktail-item>
+    </div>
+  </ng-container>
+  <ng-template #loadingAnimation>
+    <app-loading></app-loading>
+  </ng-template>
 </div>
